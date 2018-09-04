@@ -574,15 +574,20 @@ function showCards(value) {
   for (const card of set.cards) {
     const element = document.createElement('img');
     element.setAttribute('alt', card);
-    element.setAttribute('src', 'http://wiki.dominionstrategy.com/' + DATA[card]);
+    element.setAttribute('src', fixImageUrl(DATA[card]));
     wrapper.appendChild(element);
   }
   for (const card of set.extras) {
     const element = document.createElement('img');
     element.setAttribute('alt', card);
-    element.setAttribute('src', 'http://wiki.dominionstrategy.com/' + DATA[card]);
+    element.setAttribute('src', fixImageUrl(DATA[card]));
     wrapper2.appendChild(element);
   }
+}
+
+function fixImageUrl(url) {
+  const i = url.lastIndexOf('/');
+  return 'images/' + encodeURIComponent(url.slice(i+1));
 }
 
 document.getElementById('set-select').addEventListener('change', onChange);
